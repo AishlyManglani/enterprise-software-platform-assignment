@@ -375,7 +375,7 @@ PLAY RECAP *********************************************************************
 vm1                        : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 vm2                        : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
-aishly@Aishly:~/ansible_project$
+aishly@Aishly:~/ansible_project$ ansible-playbook -i inventory.ini webserver.yml
 
 
 
