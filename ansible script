@@ -1,0 +1,385 @@
+aishly@Aishly:~$ sudo apt update
+[sudo] password for aishly:
+Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Fetched 257 kB in 1s (211 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+2 packages can be upgraded. Run 'apt list --upgradable' to see them.
+aishly@Aishly:~$ sudo apt upgrade
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Calculating upgrade... Done
+Get another security update through Ubuntu Pro with 'esm-apps' enabled:
+  ansible
+Learn more about Ubuntu Pro at https://ubuntu.com/pro
+The following packages have been kept back:
+  python3-update-manager update-manager-core
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+aishly@Aishly:~$ sudo apt install ansible -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+ansible is already the newest version (2.10.7+merged+base+2.10.8+dfsg-1).
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+aishly@Aishly:~$ ansible --version
+ansible 2.10.8
+  config file = None
+  configured module search path = ['/home/aishly/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 3.10.12 (main, Jul 29 2024, 16:56:48) [GCC 11.4.0]
+aishly@Aishly:~$ ssh -i "C:\Users\aishl\Downloads\vm1.pem" ec2-u
+ser@ec2-18-189-29-42.us-east-2.compute.amazonaws.com
+ssh -i "C:\Users\aishl\Downloads\vm2.pem" ec2-user@ec2-3-134-106-69.us-east-2.compute.amazonaws.com
+Warning: Identity file C:\Users\aishl\Downloads\vm1.pem not accessible: No such file or directory.
+The authenticity of host 'ec2-18-189-29-42.us-east-2.compute.amazonaws.com (18.189.29.42)' can't be established.
+ED25519 key fingerprint is SHA256:YqjZyzPphmUEGyH+dU+SEqDRGGnDR8VDrArUHDYxh8Q.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-18-189-29-42.us-east-2.compute.amazonaws.com' (ED25519) to the list of known hosts.
+ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+Warning: Identity file C:\Users\aishl\Downloads\vm2.pem not accessible: No such file or directory.
+The authenticity of host 'ec2-3-134-106-69.us-east-2.compute.amazonaws.com (3.134.106.69)' can't be established.
+ED25519 key fingerprint is SHA256:fxcQv7VJTyTo5AqyuguBl96y0bKTg/lJIgK5f8SWdB8.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-3-134-106-69.us-east-2.compute.amazonaws.com' (ED25519) to the list of known hosts.
+ec2-user@ec2-3-134-106-69.us-east-2.compute.amazonaws.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+aishly@Aishly:~$ chmod 400 /path/to/vm1.pem
+chmod: cannot access '/path/to/vm1.pem': No such file or directory
+aishly@Aishly:~$ chmod 400 "C:\Users\aishl\Downloads\vm1.pem
+>
+>
+> ssh -i "C:\Users\aishl\Downloads\vm1.pem" ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com
+>
+>
+>
+>
+>
+>
+>
+> ^C
+aishly@Aishly:~$ ssh-add "C:\Users\aishl\Downloads\vm1.pem"
+Could not open a connection to your authentication agent.
+aishly@Aishly:~$ eval $(ssh-agent)
+Agent pid 879
+aishly@Aishly:~$ ssh-add /mnt/c/Users/aishl/Downloads/vm1.pem
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0777 for '/mnt/c/Users/aishl/Downloads/vm1.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+aishly@Aishly:~$ ssh -i /mnt/c/Users/aishl/Downloads/vm1.pem ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0777 for '/mnt/c/Users/aishl/Downloads/vm1.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "/mnt/c/Users/aishl/Downloads/vm1.pem": bad permissions
+ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+aishly@Aishly:~$ chmod 400 /mnt/c/Users/aishl/Downloads/vm1.pem
+aishly@Aishly:~$ ssh -i /mnt/c/Users/aishl/Downloads/vm1.pem ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0555 for '/mnt/c/Users/aishl/Downloads/vm1.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "/mnt/c/Users/aishl/Downloads/vm1.pem": bad permissions
+ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+aishly@Aishly:~$ ^C
+aishly@Aishly:~$ cp /mnt/c/Users/aishl/Downloads/vm1.pem ~/vm1.pem
+aishly@Aishly:~$ chmod 400 ~/vm1.pem
+aishly@Aishly:~$ ssh -i ~/vm1.pem ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-172-31-35-162 ~]$ ^C
+[ec2-user@ip-172-31-35-162 ~]$ exit
+logout
+Connection to ec2-18-189-29-42.us-east-2.compute.amazonaws.com closed.
+aishly@Aishly:~$ cp /mnt/c/Users/aishl/Downloads/vm2.pem ~/vm2.pem
+aishly@Aishly:~$ chmod 400 ~/vm2.pem
+aishly@Aishly:~$ ssh -i ~/vm2.pem ec2-user@ec2-3-134-106-69.us-east-2.compute.amazonaws.com
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-172-31-39-243 ~]$ exit
+logout
+Connection to ec2-3-134-106-69.us-east-2.compute.amazonaws.com closed.
+aishly@Aishly:~$ mkdir ansible-project
+mkdir: cannot create directory ‘ansible-project’: File exists
+aishly@Aishly:~$ mkdir ansible_project
+aishly@Aishly:~$ cd ansible_project
+aishly@Aishly:~/ansible_project$ touch hosts
+aishly@Aishly:~/ansible_project$ nano hosts
+aishly@Aishly:~/ansible_project$ ansible -i hosts webservers -m ping
+vm2 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: hostname contains invalid characters",
+    "unreachable": true
+}
+vm1 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: hostname contains invalid characters",
+    "unreachable": true
+}
+aishly@Aishly:~/ansible_project$ ^C
+aishly@Aishly:~/ansible_project$ ^C
+aishly@Aishly:~/ansible_project$ cd..
+cd..: command not found
+aishly@Aishly:~/ansible_project$ cd/
+-bash: cd/: No such file or directory
+aishly@Aishly:~/ansible_project$ cd~
+Command 'cd~' not found, did you mean:
+  command 'cdi' from deb cdo (2.0.4-1)
+  command 'cdw' from deb cdw (0.8.1-2)
+  command 'cd5' from deb cd5 (0.1-4)
+  command 'cdo' from deb cdo (2.0.4-1)
+  command 'cdb' from deb tinycdb (0.78build3)
+  command 'cde' from deb cde (0.1+git9-g551e54d-1.2)
+  command 'cdp' from deb irpas (0.10-9)
+Try: sudo apt install <deb name>
+aishly@Aishly:~/ansible_project$ cd..
+cd..: command not found
+aishly@Aishly:~/ansible_project$ ansible -i hosts webservers -m ping
+vm1 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: hostname contains invalid characters",
+    "unreachable": true
+}
+vm2 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: hostname contains invalid characters",
+    "unreachable": true
+}
+aishly@Aishly:~/ansible_project$ nano hosts
+aishly@Aishly:~/ansible_project$ nano hosts
+aishly@Aishly:~/ansible_project$ ansible -i hosts webservers -m ping
+[WARNING]:  * Failed to parse /home/aishly/ansible_project/hosts with yaml
+plugin: We were unable to read either as JSON nor YAML, these are the errors we
+got from each: JSON: Expecting value: line 1 column 2 (char 1)  Syntax Error
+while loading YAML.   did not find expected <document start>  The error appears
+to be in '/home/aishly/ansible_project/hosts': line 2, column 1, but may be
+elsewhere in the file depending on the exact syntax problem.  The offending
+line appears to be:  [webservers] vm1 ansible_host=ec2-18-189-29-42.us-
+east-2.compute.amazonaws.com ansible_user=ec2-user
+ansible_ssh_private_key_file=~/vm1.pem ec2-user@ec2-18-189-29-42.us-
+east-2.compute.amazonaws.com ^ here
+[WARNING]:  * Failed to parse /home/aishly/ansible_project/hosts with ini
+plugin: /home/aishly/ansible_project/hosts:2: Expected key=value host variable
+assignment, got: ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com
+[WARNING]: Unable to parse /home/aishly/ansible_project/hosts as an inventory
+source
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that
+the implicit localhost does not match 'all'
+aishly@Aishly:~/ansible_project$ nano hosts
+aishly@Aishly:~/ansible_project$ nano ~/ansible_project/hosts
+aishly@Aishly:~/ansible_project$ ansible-inventory -i ~/ansible_project/hosts --list
+{
+    "_meta": {
+        "hostvars": {
+            "vm1": {
+                "ansible_host": "ec2-18-189-29-42.us-east-2.compute.amazonaws.com",
+                "ansible_ssh_private_key_file": "~/vm1.pem",
+                "ansible_user": "ec2-user"
+            },
+            "vm2": {
+                "ansible_host": "ec2-3-134-106-69.us-east-2.compute.amazonaws.com",
+                "ansible_ssh_private_key_file": "~/vm2.pem",
+                "ansible_user": "ec2-user"
+            }
+        }
+    },
+    "all": {
+        "children": [
+            "ungrouped",
+            "webservers"
+        ]
+    },
+    "webservers": {
+        "hosts": [
+            "vm1",
+            "vm2"
+        ]
+    }
+}
+aishly@Aishly:~/ansible_project$ ansible -i ~/ansible_project/hosts webservers -m ping
+[WARNING]: Platform linux on host vm2 is using the discovered Python
+interpreter at /usr/bin/python3.9, but future installation of another Python
+interpreter could change the meaning of that path. See https://docs.ansible.com
+/ansible/2.10/reference_appendices/interpreter_discovery.html for more
+information.
+vm2 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+[WARNING]: Platform linux on host vm1 is using the discovered Python
+interpreter at /usr/bin/python3.9, but future installation of another Python
+interpreter could change the meaning of that path. See https://docs.ansible.com
+/ansible/2.10/reference_appendices/interpreter_discovery.html for more
+information.
+vm1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.9"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+aishly@Aishly:~/ansible_project$ touch deploy_webserver.yml
+aishly@Aishly:~/ansible_project$ nano deploy_webserver.yml
+aishly@Aishly:~/ansible_project$ ansible-playbook -i hosts deploy_webserver.yml
+
+PLAY [webservers] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+[WARNING]: Platform linux on host vm2 is using the discovered Python
+interpreter at /usr/bin/python3.9, but future installation of another Python
+interpreter could change the meaning of that path. See https://docs.ansible.com
+/ansible/2.10/reference_appendices/interpreter_discovery.html for more
+information.
+ok: [vm2]
+[WARNING]: Platform linux on host vm1 is using the discovered Python
+interpreter at /usr/bin/python3.9, but future installation of another Python
+interpreter could change the meaning of that path. See https://docs.ansible.com
+/ansible/2.10/reference_appendices/interpreter_discovery.html for more
+information.
+ok: [vm1]
+
+TASK [Install Apache web server] ***********************************************
+fatal: [vm1]: FAILED! => {"changed": false, "msg": "The Python 2 yum module is needed for this module. If you require Python 3 support use the `dnf` Ansible module instead."}
+fatal: [vm2]: FAILED! => {"changed": false, "msg": "The Python 2 yum module is needed for this module. If you require Python 3 support use the `dnf` Ansible module instead."}
+
+PLAY RECAP *********************************************************************
+vm1                        : ok=1    changed=0    unreachable=0
+   failed=1    skipped=0    rescued=0    ignored=0
+vm2                        : ok=1    changed=0    unreachable=0
+aishly@Aishly:~/ansible_project$
+
+aishly@Aishly:~/ansible_project$ ssh -i ~/vm1.pem ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com ec2-user@18.189.29.42
+ssh -i ~/vm2.pem ec2-user@ec2-3-134-106-69.us-east-2.compute.amazonaws.com ec2-user@3.134.106.69
+bash: line 1: ec2-user@18.189.29.42: command not found
+bash: line 1: ec2-user@3.134.106.69: command not found
+aishly@Aishly:~/ansible_project$  ssh -i ~/vm1.pem ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com
+ssh -i ~/vm2.pem ec2-user@ec2-3-134-106-69.us-east-2.compute.ama
+zonaws.com ec2-user@ec2-3-134-106-69.us-east-2.compute.amazonaws
+.com
+bash: line 1: ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com: command not found
+bash: line 1: ec2-user@ec2-3-134-106-69.us-east-2.compute.amazonaws.com: command not found
+aishly@Aishly:~/ansible_project$  ssh -i ~/vm1.pem ec2-user@ec2-18-189-29-42.us-east-2.compute.amazonaws.com   ssh -i ~/vm2.pem ec2-user@ec2-3-134-106-69.us-east-2.compute.amazonaws.com
+Warning: Identity file /home/aishly/vm2.pem not accessible: No such file or directory.
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+Host key verification failed.
+aishly@Aishly:~/ansible_project$ ssh -i ~/vm1.pem ec2-user@"ec2-18-189-29-42.us-east-2.compute.amazonaws.com ssh -i ~/vm2.pem ec
+2-user@ec2-3-134-106-69.us-east-2.compute.amazonaws.com
+>
+> sudo systemctl status httpd
+> grep 'Listen 8080' /etc/httpd/conf/httpd.conf
+> ^C
+aishly@Aishly:~/ansible_project$ ansible-playbook -i hosts deploy_webserver.yml
+
+PLAY [webservers] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+[WARNING]: Platform linux on host vm1 is using the discovered Python
+interpreter at /usr/bin/python3.9, but future installation of another Python
+interpreter could change the meaning of that path. See https://docs.ansible.com
+/ansible/2.10/reference_appendices/interpreter_discovery.html for more
+information.
+ok: [vm1]
+[WARNING]: Platform linux on host vm2 is using the discovered Python
+interpreter at /usr/bin/python3.9, but future installation of another Python
+interpreter could change the meaning of that path. See https://docs.ansible.com
+/ansible/2.10/reference_appendices/interpreter_discovery.html for more
+information.
+ok: [vm2]
+
+TASK [Install Apache web server] ***********************************************
+fatal: [vm1]: FAILED! => {"changed": false, "msg": "The Python 2 yum module is needed for this module. If you require Python 3 support use the `dnf` Ansible module instead."}
+fatal: [vm2]: FAILED! => {"changed": false, "msg": "The Python 2 yum module is needed for this module. If you require Python 3 support use the `dnf` Ansible module instead."}
+
+PLAY RECAP *********************************************************************
+vm1                        : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+vm2                        : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+
+aishly@Aishly:~/ansible_project$ sudo systemctl start httpd
+[sudo] password for aishly:
+Failed to start httpd.service: Unit httpd.service not found.
+aishly@Aishly:~/ansible_project$ sudo systemctl status httpd
+Unit httpd.service could not be found.
+aishly@Aishly:~/ansible_project$ nano deploy_webserver.yml
+aishly@Aishly:~/ansible_project$ ansible-playbook -i hosts deploy_webserver.yml
+
+PLAY [webservers] **************************************************************
+
+TASK [Gathering Facts] *********************************************************
+[WARNING]: Platform linux on host vm1 is using the discovered Python
+interpreter at /usr/bin/python3.9, but future installation of another Python
+interpreter could change the meaning of that path. See https://docs.ansible.com
+/ansible/2.10/reference_appendices/interpreter_discovery.html for more
+information.
+ok: [vm1]
+[WARNING]: Platform linux on host vm2 is using the discovered Python
+interpreter at /usr/bin/python3.9, but future installation of another Python
+interpreter could change the meaning of that path. See https://docs.ansible.com
+/ansible/2.10/reference_appendices/interpreter_discovery.html for more
+information.
+ok: [vm2]
+
+TASK [Install Apache web server] ***********************************************
+changed: [vm2]
+changed: [vm1]
+
+TASK [Start and enable Apache] *************************************************
+changed: [vm2]
+changed: [vm1]
+
+TASK [Configure Apache to listen on port 8080] *********************************
+changed: [vm2]
+changed: [vm1]
+
+TASK [Create a custom index.html for VM1 or VM2] *******************************
+changed: [vm1]
+changed: [vm2]
+
+TASK [Restart Apache to apply changes] *****************************************
+changed: [vm1]
+changed: [vm2]
+
+PLAY RECAP *********************************************************************
+vm1                        : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+vm2                        : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+aishly@Aishly:~/ansible_project$
+
+
+
+
+
+
+
