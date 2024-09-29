@@ -1,0 +1,30 @@
+<!-- code written by: Aishly and Sheetal -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Post</title>
+</head>
+<body>
+    <h1>Create a New Post</h1>
+    <form action="/" method="POST">
+        <textarea name="status" placeholder="Enter your status update"></textarea>
+        <br>
+        <button type="submit">Post</button>
+    </form>
+
+    {% if post_id %}
+        <h2>Your Post ID: {{ post_id }}</h2>
+        <form action="/retrieve" method="GET">
+            <input type="text" name="post_id" placeholder="Enter Post ID to retrieve" required>
+            <button type="submit">Retrieve</button>
+        </form>
+        <form action="/delete" method="POST">
+            <input type="text" name="post_id" placeholder="Enter Post ID to delete" required>
+            <button type="submit">Delete</button>
+        </form>
+    {% endif %}
+</body>
+</html>
+
